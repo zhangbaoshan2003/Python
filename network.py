@@ -1,0 +1,19 @@
+import urllib.request
+import re
+#dStr = urllib.request.urlopen('https://hk.finance.yahoo.com/q/cp?s=%5EDJI').read()
+#getdStr=dStr.decode()
+getdStr="""
+</th></tr><tr><td class="yfnc_tabledata1"><b><a href="/q?s=AAPL">AAPL</a></b></td><td class="yfnc_tabledata1">蘋果公司</td><td class="yfnc_tabledata1" align="right"><b>107.110</b> <nobr><small>11月16日, 星期三, 05:00</small></nobr></td><td class="yfnc_tabledata1" align="right"><img width="10" height="14" style="margin-right:-2px;" border="0" src="https://s.yimg.com/os/mit/media/m/base/images/transparent-1093278.png" class="pos_arrow" alt="上升"> <b style="color:#008800;">1.400</b><b style="color:#008800;"> (1.324%)</b></td><td class="yfnc_tabledata1" align="right">0</td></tr><tr><td class="yfnc_tabledata1"><b><a href="/q?s=AXP">AXP</a></b></td><td class="yfnc_tabledata1">American Express Company</td><td class="yfnc_tabledata1" align="right"><b>72.470</b> <nobr><small>11月16日, 星期三, 05:00</small></nobr></td><td class="yfnc_tabledata1" align="right"><img width="10" height="14" style="margin-right:-2px;" border="0" src="https://s.yimg.com/os/mit/media/m/base/images/transparent-1093278.png" class="pos_arrow" alt="上升"> <b style="color:#008800;">0.050</b><b style="color:#008800;"> (0.069%)</b></td><td class="yfnc_tabledata1" align="right">4,431,192</td></tr><tr><td class="yfnc_tabledata1"><b><a href="/q?s=BA">BA</a></b></td><td class="yfnc_tabledata1">The Boeing Company</td><td class="yfnc_tabledata1" align="right"><b>148.110</b> <nobr><small>11月16日, 星期三, 05:01</small></nobr></td><td class="yfnc_tabledata1" align="right"><img width="10" height="14" style="margin-right:-2px;" border="0" src="https://s.yimg.com/os/mit/media/m/base/images/transparent-1093278.png" class="neg_arrow" alt="下跌"> <b style="color:#cc0000;">1.880</b> <b style="color:#cc0000;"> (1.253%)</b></td><td class="yfnc_tabledata1" align="right">3,856,601</td></tr><tr><td class="yfnc_tabledata1"><b><a href="/q?s=CAT">CAT</a></b></td><td class="yfnc_tabledata1">Caterpillar Inc.</td><td class="yfnc_tabledata1" align="right"><b>94.440</b> <nobr><small>11月16日, 星期三, 05:00</small></nobr></td><td class="yfnc_tabledata1" align="right"><img width="10" height="14" style="margin-right:-2px;" border="0" src="https://s.yimg.com/os/mit/media/m/base/images/transparent-1093278.png" class="pos_arrow" alt="上升"> <b style="color:#008800;">0.270</b><b style="color:#008800;"> (0.287%)</b></td><td class="yfnc_tabledata1" align="right">4,645,386</td></tr><tr><td class="yfnc_tabledata1"><b><a href="/q?s=CSCO">CSCO</a></b></td><td class="yfnc_tabledata1">思科系統公司</td><td class="yfnc_tabledata1" align="right"><b>31.700</b> <nobr><small>11月16日, 星期三, 05:00</small></nobr></td><td class="yfnc_tabledata1" align="right"><img width="10" height="14" style="margin-right:-2px;" border="0" src="https://s.yimg.com/os/mit/media/m/base/images/transparent-1093278.png" class="pos_arrow" alt="上升"> <b style="color:#008800;">0.330</b><b style="color:#008800;"> (1.052%)</b></td><td class="yfnc_tabledata1" align="right">0</td></tr><tr><td class="yfnc_tabledata1"><b><a href="/q?s=CVX">CVX</a></b></td><td class="yfnc_tabledata1">Chevron Corporation</td><td class="yfnc_tabledata1" align="right"><b>108.960</b> <nobr><small>11月16日, 星期三, 05:00</small></nobr></td><td class="yfnc_tabledata1" align="right"><img width="10" height="14" style="margin-right:-2px;" border="0"
+"""
+#print(getdStr)
+#在python 3中urllib.read()返回bytes对象而非str，语句功能是将dStr转换成str
+#convert dStr into str, urllib.read() returns bytes objects instead of str
+m = re.findall('<tr><td class="yfnc_tabledata1"><b><a href=".*?">(.*?)</a></b></td><td class="yfnc_tabledata1">(.*?)</td>.*?<b>(.*?)</b>', getdStr)
+if m:
+    print(m)
+    print('\n')
+    print (len(m))
+else:
+    print ('not match')
+for i in range(0, len(m)):
+    print(m[i])
